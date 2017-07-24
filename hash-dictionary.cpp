@@ -8,11 +8,12 @@
 // Constructor
 HashDictionary::HashDictionary()
 {
-  buckets = (HashNode **) malloc(MaxBuckets * sizeof(HashNode *));
+  buckets = new HashNode*[MaxBuckets];
   for(int i=0;i<MaxBuckets;i++) {
   	buckets[i] = NULL;
   }
   nElements =0;
+  maxElements=MaxBuckets;
 }
 
 int
@@ -30,23 +31,23 @@ HashDictionary::hash(KeyType key) {
 bool
 HashDictionary::addRecord( KeyType key, DataType record)
 {
-  if(nElements==MaxBuckets){
+  if(nElements==maxElements){
   	int osize = MaxBuckets;
-  	MaxBuckets = 2* MaxBuckets;
-  	HashNode ** n=(HashNode **) malloc(MaxBuckets * sizeof(HashNode *));
+  	maxElements *= 2;
+  	HashNode ** nTable=(HashNode **) malloc(MaxBuckets * sizeof(HashNode *));
   	
   	for(int i=0;i<osize;i++) {
   		HashNode *e = buckets[i];
   		while(e!=NULL) {
   			HashNode *n = e->next;
   			int h =hash(e->key);
-  			e->next = n[h];
-  			n[h] = e;
+  			e->next = nTable[h];
+  			nTable[h] = e;
   			e=n;
   		}
   	}
   	free(buckets);
-  	buckets = n;
+  	buckets = nTable;
   }
   int h = hash(key);
   HashNode *e = buckets[h];
@@ -54,10 +55,10 @@ HashDictionary::addRecord( KeyType key, DataType record)
   {
     if(strcmp(key,e->key)==0)
     {
-      e->_data = record;
+      e->data = record;
       return true;
     }
-    e = e->_next;
+    e = e->next;
   }
   e = new HashNode();
   e->key = strdup(key);
