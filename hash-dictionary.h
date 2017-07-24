@@ -3,6 +3,7 @@
 
 #include "dictionary.h"
 
+
 struct HashNode {
 	KeyType key;
 	DataType data;

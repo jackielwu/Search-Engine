@@ -46,7 +46,7 @@ minihttpd: minihttpd.h minihttpd.cpp
 
 git-commit:
 	git add Makefile *.h *.cpp testall.out >> .local.git.out || echo
-	git commit -a -m "Commit search engine" >> .local.git.out || echo
+	git commit
 
 
 

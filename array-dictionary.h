@@ -16,7 +16,7 @@ struct ArrayDictionaryNode {
 class ArrayDictionary : public Dictionary {
 
  protected:
-	ArrayDictionaryNode *array;
+	ArrayDictionaryNode **array;
 	int maxNumber;
 	int currentNumber;
 public:

@@ -8,7 +8,11 @@
 // Constructor
 HashDictionary::HashDictionary()
 {
-  // Add your code here
+  buckets = (HashNode **) malloc(MaxBuckets * sizeof(HashNode *));
+  for(int i=0;i<MaxBuckets;i++) {
+  	buckets[i] = NULL;
+  }
+  nElements =0;
 }
 
 int
@@ -26,7 +30,41 @@ HashDictionary::hash(KeyType key) {
 bool
 HashDictionary::addRecord( KeyType key, DataType record)
 {
-  // Add your code here
+  if(nElements==MaxBuckets){
+  	int osize = MaxBuckets;
+  	MaxBuckets = 2* MaxBuckets;
+  	HashNode ** n=(HashNode **) malloc(MaxBuckets * sizeof(HashNode *));
+  	
+  	for(int i=0;i<osize;i++) {
+  		HashNode *e = buckets[i];
+  		while(e!=NULL) {
+  			HashNode *n = e->next;
+  			int h =hash(e->key);
+  			e->next = n[h];
+  			n[h] = e;
+  			e=n;
+  		}
+  	}
+  	free(buckets);
+  	buckets = n;
+  }
+  int h = hash(key);
+  HashNode *e = buckets[h];
+  while (e != NULL)
+  {
+    if(strcmp(key,e->key)==0)
+    {
+      e->_data = record;
+      return true;
+    }
+    e = e->_next;
+  }
+  e = new HashNode();
+  e->key = strdup(key);
+  e->data = record;
+	e->next = buckets[h];
+  buckets[h] = e;
+  nElements++;
   return false;
 }
 
@@ -34,15 +72,38 @@ HashDictionary::addRecord( KeyType key, DataType record)
 DataType
 HashDictionary::findRecord( KeyType key)
 {
-	return NULL;
+	int h = hash(key);
+  HashNode *e = buckets[h];
+  while(e != NULL)
+  {
+    if(strcmp(key,e->key)==0)
+    {
+      return e->data;
+    }
+    e = e->next;
+  }
+  return NULL;
 }
 
 // Removes one element from the table
 bool
 HashDictionary::removeElement(KeyType key)
 {
-  // Add your code here
-	return true;
+  int h = hash(key);
+  HashNode *e = buckets[h];
+  while(e != NULL)
+  {
+    if(strcmp(key,e->key)==0)
+    {
+      buckets[h] = e->next;
+      delete e->key;
+      delete e;
+      nElements--;
+      return true;
+    }
+    e = e->next;
+  }
+  return false;
 }
 
 // Returns all the elements in the table as an array of strings.

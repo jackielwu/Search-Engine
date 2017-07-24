@@ -10,15 +10,24 @@
 // Constructor
 ArrayDictionary::ArrayDictionary()
 {
-  // Add your code here
+	maxNumber = 100;
+  array = (ArrayDictionaryNode **) malloc(maxNumber * sizeof(ArrayDictionaryNode *));
+  currentNumber =0;
 }
 
 // Add a record to the dictionary. Returns false if key already exists
 bool
 ArrayDictionary::addRecord( KeyType key, DataType record)
 {
-        // Add your code here
-	
+	for(int i=0;i<currentNumber;i++) {
+		if(strcmp(key,array[i]->key)==0) {
+			return false;
+		}
+	}
+	ArrayDictionaryNode *e = new ArrayDictionaryNode();
+	e->key = strdup(key);
+	e->data = record;
+	array[currentNumber++] = e;
 	return true;
 }
 
@@ -26,8 +35,11 @@ ArrayDictionary::addRecord( KeyType key, DataType record)
 DataType
 ArrayDictionary::findRecord( KeyType key)
 {
-        // add your code here
-
+  for(int i=0;i<currentNumber;i++) {
+		if(strcmp(key,array[i]->key)==0) {
+			return array[i]->data;
+		}
+	}
 	return NULL;
 }
 
@@ -35,9 +47,18 @@ ArrayDictionary::findRecord( KeyType key)
 bool
 ArrayDictionary::removeElement(KeyType key)
 {
-        // Add your code here
-
-	return true;
+	for(int i=0;i<currentNumber;i++) {
+		if(strcmp(key,array[i]->key)==0) {
+			delete array[i]->key;
+			for(int j=i+1;j<currentNumber;j++) {
+				array[i]=array[j];
+				i++;
+			}
+			currentNumber--;
+			return true;
+		}
+	}
+	return false;
 	
 }
 
