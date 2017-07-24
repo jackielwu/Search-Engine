@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "bsearch-dictionary.h"
+#include "heap.h"
 
 // Constructor
 BinarySearchDictionary::BinarySearchDictionary()
@@ -40,6 +41,13 @@ BinarySearchDictionary::findRecord( KeyType key)
 void
 BinarySearchDictionary::sort()
 {
+	Heap heap(currentNumber);
+	for(int i=0;i<currentNumber;i++) {
+		heap.insert(array[i]);
+	}
+	for(int i=0;i<currentNumber;i++) {
+		array[i]=heap.removeMin();
+	}
 	//printf("Before\n");
 	//for (int i = 0; i < currentNumber; i++) {
 	//	printf("%s\n", array[i].key);
