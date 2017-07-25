@@ -67,6 +67,13 @@ ArrayDictionary::removeElement(KeyType key)
 KeyType *
 ArrayDictionary::keys(int * n)
 {
-        // Add yoru code here
-	return NULL;
+  KeyType * a = (KeyType *) malloc(currentNumber * sizeof(KeyType));
+
+	*n = currentNumber;
+	for (int i = 0; i < currentNumber; i++) {
+		ArrayDictionaryNode * n = array[i];
+		a[i] = n->key;
+	}
+	*n = currentNumber;
+	return a;
 }
