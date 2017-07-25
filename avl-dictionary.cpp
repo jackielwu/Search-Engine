@@ -9,7 +9,7 @@
 
 #include "avl-dictionary.h"
 
-bool debug = false;
+bool debug = true;
 
 // Constructor
 AVLDictionary::AVLDictionary()
@@ -22,12 +22,12 @@ AVLDictionary::AVLDictionary()
 bool
 AVLDictionary::addRecord( KeyType key, DataType record)
 {
-	/*if ( debug) {
+	if ( debug) {
 		printf("------------------------------------\n");
 		printf("addRecord(\"%s\",%ld)\n",  key, (long) record);
 		printf("---------- Before -----------------\n");
 		printNode("", root, 0);
-	}*/
+	}
 	
 	// Add your implementation here
 	AVLNode *current = root;
@@ -82,19 +82,19 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 	//Height might not be valid anymore.
 	//We need to restructure .
 
-	/*if ( debug) {
+	if ( debug) {
 		printf("---------- Before Restructure -----------------\n");
 		printNode("", root, 0);
-	}*/
+	}
 	
 	// Call restructure
 	restructure(n);
-	/*if (debug) {
+	if (debug) {
 		checkRecursive(root);
 		
 		printf("---------- After Restructure -----------------\n");
 		printNode("", root, 0);
-	}*/
+	}
 	return true;
 }
 
@@ -287,41 +287,56 @@ AVLDictionary::removeElement(KeyType key)
 	AVLNode *e;
 	if(root!=NULL) {
 		e=root;
+		bool isleft=false;
 		while(e!=NULL) {
 			if(strcmp(key,e->key)<0) {
 				e=e->left;
+				isleft=true;
 			}
 			else if(strcmp(key,e->key)>0) {
 				e=e->right;
+				isleft=false;
 			}
 			else {
-				if(e->left==NULL||e->right==NULL) {
-					AVLNode *tmp = e->left ?e->left : e->right;
-					if(tmp==NULL)
-					{
-						tmp = e;
-						e = NULL;
+				if(e->left==NULL && e->right==NULL) {
+					e=NULL;
+					return true;
+				}
+				if(e->left==NULL) {
+					e->left->parent=e->parent;
+					if(isleft) {
+						e->parent->left=e->left;
 					}
 					else {
-						*e=*tmp;
+						e->parent->right=e->left;
 					}
-					delete tmp;
+					delete e;
 					return true;
 				}
-				else {
-					AVLNode *tmp = e->right;
-					while(tmp->left!=NULL) {
-						tmp=tmp->left;
+				if(e->right==NULL) {
+					e->right->parent=e->parent;
+					if(isleft) {
+						e->parent->left=e->right;
 					}
-					free((char *)e->key);
-					e->key=strdup(tmp->key);
-					e->data= tmp->data;
-					AVLNode *z = e->parent;
-					free((char *)tmp->key);
-					delete tmp;
-					restructure(z);
+					else {
+						e->parent->right=e->right;
+					}
+					delete e;
 					return true;
 				}
+
+				AVLNode *tmp = e->right;
+				while(tmp->left!=NULL) {
+					tmp=tmp->left;
+				}
+
+				e->key=strdup(tmp->key);
+				e->data= tmp->data;
+				AVLNode *z = e->parent;
+				
+				delete tmp;
+				restructure(z);
+				return true;
 			}
 		}
 	}
