@@ -36,7 +36,7 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 		previous = current;
 		if(strcmp(key,current->key)==0) {
 			current->data = record;
-			return true;
+			return false;
 		}
 		else if(strcmp(key,current->key)<0) {
 			current = current->left;
@@ -95,7 +95,7 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 		printf("---------- After Restructure -----------------\n");
 		printNode("", root, 0);
 	}
-	return false;
+	return true;
 }
 
 void
