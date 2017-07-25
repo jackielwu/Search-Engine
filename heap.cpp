@@ -23,7 +23,7 @@ void Heap::insert(ArrayDictionaryNode *e)
 {
 	assert(n<nmax);
 	printf("hi\n");
-	array[n]->key=strdup(e->key);
+	array[n]=e;
 	n++;
 	int child = n-1;
 	int parent=iparent(child);
