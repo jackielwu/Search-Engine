@@ -313,17 +313,16 @@ AVLDictionary::removeElement(KeyType key)
 					while(tmp->left!=NULL) {
 						tmp=tmp->left;
 					}
-					AVLNode *del = e;
+					free((void *)e->key);
+					e->key=strdup(tmp->key);
+					e->data= tmp->data;
+					
 					AVLNode *child = tmp->right;
 					child->parent=tmp->parent;
 					tmp->parent->left=child;
 					AVLNode *z = e->parent;
-					tmp->right=e->right;
-					tmp->left=e->left;
-					tmp->parent=z;
-					e=tmp;
-					free((void *)del->key);
-					delete del;
+					free((void *)tmp->key);
+					delete tmp;
 					restructure(z);
 					return true;
 				}
