@@ -287,6 +287,11 @@ AVLDictionary::removeElement(KeyType key)
 	AVLNode *e;
 	if(root!=NULL) {
 		e=root;
+		if(strcmp(key,root->key)==0) {
+			root=NULL;
+			delete e;
+			return true;
+		}
 		bool isleft=false;
 		while(e!=NULL) {
 			if(strcmp(key,e->key)<0) {
