@@ -306,7 +306,6 @@ AVLDictionary::removeElement(KeyType key)
 				}
 				assert(y!=NULL);
 				
-				return e->data;
 			}
 		}
 	}
