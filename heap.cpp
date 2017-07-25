@@ -53,7 +53,7 @@ ArrayDictionaryNode * Heap::removeMin()
 	while(left<n) {
 		int minChild=left;
 		if(right<n && strcmp(array[right]->key,array[left]->key)<0) {
-			minChild=left;
+			minChild=right;
 		}
 		if(strcmp(array[parent]->key,array[minChild]->key)<0) {
 			break;
