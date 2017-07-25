@@ -316,10 +316,6 @@ AVLDictionary::removeElement(KeyType key)
 					free((char *)e->key);
 					e->key=strdup(tmp->key);
 					e->data= tmp->data;
-					
-					AVLNode *child = tmp->right;
-					child->parent=tmp->parent;
-					tmp->parent->left=child;
 					AVLNode *z = e->parent;
 					free((char *)tmp->key);
 					delete tmp;
