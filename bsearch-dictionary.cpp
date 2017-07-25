@@ -38,7 +38,7 @@ BinarySearchDictionary::findRecord( KeyType key)
 			low = mid+1;
 		}
 		else if (result<0) {
-			high=mid+1;
+			high=mid-1;
 		}
 		else {
 			return array[mid]->data;
