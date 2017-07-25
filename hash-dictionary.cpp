@@ -56,7 +56,7 @@ HashDictionary::addRecord( KeyType key, DataType record)
     if(strcmp(key,e->key)==0)
     {
       e->data = record;
-      return true;
+      return false;
     }
     e = e->next;
   }
@@ -66,7 +66,7 @@ HashDictionary::addRecord( KeyType key, DataType record)
 	e->next = buckets[h];
   buckets[h] = e;
   nElements++;
-  return false;
+  return true;
 }
 
 // Find a key in the dictionary and return corresponding record or NULL
