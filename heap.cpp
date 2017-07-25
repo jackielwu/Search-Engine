@@ -7,7 +7,7 @@ Heap::Heap(int maxSize)
 	array=(ArrayDictionaryNode **) malloc(nmax * sizeof(ArrayDictionaryNode *));
 	for(int i=0;i<nmax;i++)
 	{
-		array[i]=NULL;
+		array[i]->key="";
 	}
 }
 Heap::~Heap()
