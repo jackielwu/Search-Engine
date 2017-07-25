@@ -36,7 +36,9 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
     fprintf(fout, "</FORM></CENTER>\n");
     return;
   }
-
+	timespec start,stop;
+	long timeelapsed=0;
+	clock_gettime(CLOCK_REALTIME,&start);
   // TODO: The words to search in "documentRequested" are in the form
   // /search?word=a+b+c
   // search = "this is the search"
@@ -70,11 +72,16 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
     "CS251 Data Structures"
   };
 
+	clock_gettime(CLOCK_REALTIME,&stop);
+	timeelapsed = stop.tv_nsec - start.tv_nsec;
+	
+
   fprintf( stderr, "Search for words: \"%s\"\n", words);
 
   fprintf( fout, "<TITLE>Search Results</TITLE>\r\n");
   fprintf( fout, "<H1> <Center><em>Boiler Search</em></H1>\n");
-  fprintf( fout, "<H2> Search Results for \"%s\"</center></H2>\n", words );
+  fprintf( fout, "<H2> <Center>Search Results for \"%s\"</H2>\n", words );
+  fprintf( fout, "<H3> <Center>Time Elasped: %ldns</Center></H3>\n", timeelapsed );
 
   for ( int i = 0; i < nurls; i++ ) {
     fprintf( fout, "<h3>%d. <a href=\"%s\">%s</a><h3>\n", i+1, urls[i], urls[i] );

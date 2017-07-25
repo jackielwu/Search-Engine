@@ -1,6 +1,7 @@
 
 #include "minihttpd.h"
 #include "dictionary.h"
+#include <time.h>
 
 // Types of dictionaries used
 enum DictionaryType {
