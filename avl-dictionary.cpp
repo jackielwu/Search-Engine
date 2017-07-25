@@ -275,7 +275,7 @@ AVLDictionary::findRecord( KeyType key)
 bool
 AVLDictionary::removeElement(KeyType key)
 {
-  return false;
+  //return false;
 	if (debug) {
 		printf("------------------------------------\n");
 		printf("removeElement(\"%s\")\n",  key);
@@ -295,18 +295,38 @@ AVLDictionary::removeElement(KeyType key)
 				e=e->right;
 			}
 			else {
-				AVLNode *z = e->parent;
-				int maxh=0;
-				AVLNode *y=NULL;
-				if(z->left!=NULL) {
-					y=z->left;
-					maxh=z->left->height;
+				if(e->left==NULL||e->right==NULL) {
+					AVLNode *tmp = e->left ?e->left : e->right;
+					if(tmp==NULL)
+					{
+						tmp = e;
+						e = NULL;
+					}
+					else {
+						*e=*tmp;
+					}
+					delete tmp;
+					return true;
 				}
-				if(z->right!=NULL && maxh<z->right->height) {
-					y=z->right;
+				else {
+					AVLNode *tmp = e->right;
+					while(tmp->left!=NULL) {
+						tmp=tmp->left;
+					}
+					AVLNode *del = e;
+					AVLNode *child = tmp->right;
+					child->parent=tmp->parent;
+					tmp->parent->left=child;
+					AVLNode *z = e->parent;
+					tmp->right=e->right;
+					tmp->left=e->left;
+					tmp->parent=z;
+					e=tmp;
+					free((void *)del->key);
+					delete del;
+					restructure(z);
+					return true;
 				}
-				assert(y!=NULL);
-				
 			}
 		}
 	}
@@ -318,7 +338,7 @@ AVLDictionary::removeElement(KeyType key)
 		checkRecursive(root);
 	}
 	
-	return true;
+	return false;
 }
 
 // Returns all the elements in the table as an array of strings.
