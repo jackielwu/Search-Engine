@@ -17,6 +17,7 @@ Heap::~Heap()
 void Heap::insert(ArrayDictionaryNode *e)
 {
 	assert(n<nmax);
+	printf("hi\n");
 	array[n]->key=strdup(e->key);
 	n++;
 	int child = n-1;

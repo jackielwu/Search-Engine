@@ -37,8 +37,8 @@ avl-dictionary.o: avl-dictionary.h avl-dictionary.cpp
 avl-dictionary2.o: avl-dictionary.h avl-dictionary2.cpp
 	g++ -g -c avl-dictionary2.cpp
 
-bsearch-dictionary.o: bsearch-dictionary.h bsearch-dictionary.cpp
-	g++ -g -c bsearch-dictionary.cpp
+bsearch-dictionary.o: bsearch-dictionary.h bsearch-dictionary.cpp heap.h heap.cpp
+	g++ -g -c bsearch-dictionary.cpp heap.cpp
 
 # Used only for testing minihttpd independently
 minihttpd: minihttpd.h minihttpd.cpp

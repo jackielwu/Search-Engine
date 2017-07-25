@@ -1,5 +1,8 @@
 #include <string.h>
 #include <assert.h>
+#include "array-dictionary.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 class Heap {
 	int n;
