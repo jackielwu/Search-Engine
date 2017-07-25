@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "bsearch-dictionary.h"
-#include "heap.h"
+#include "heap.cpp"
 
 // Constructor
 BinarySearchDictionary::BinarySearchDictionary()
@@ -17,7 +17,8 @@ BinarySearchDictionary::BinarySearchDictionary()
 bool
 BinarySearchDictionary::addRecord( KeyType key, DataType record) {
 	sorted = false;
-	return ArrayDictionary::addRecord(key, record);
+	bool result = ArrayDictionary::addRecord(key,record);
+	return result;
 }
 
 // Find a key in the dictionary and return corresponding record or NULL
@@ -28,7 +29,21 @@ BinarySearchDictionary::findRecord( KeyType key)
 		sort();
 		sorted = true;
 	}
-	
+	int low =0;
+	int high = currentNumber-1;
+	while(high>=low) {
+		int mid = (high+low)/2;
+		int result = strcmp(key, array[mid]->key);
+		if(result>0) {
+			low = mid+1;
+		}
+		else if (result<0) {
+			high=mid+1;
+		}
+		else {
+			return array[mid]->data;
+		}
+	}
 	// Use binary search
 
 	// Add your implementation here

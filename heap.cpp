@@ -14,10 +14,10 @@ Heap::~Heap()
 	}
 	delete [] array;
 }
-void Heap::insert(char *key)
+void Heap::insert(ArrayDictionaryNode *e)
 {
-	asset(n<nmax);
-	array[n]=strdup(key);
+	assert(n<nmax);
+	array[n]->key=strdup(e->key);
 	n++;
 	int child = n-1;
 	int parent=iparent(child);
@@ -32,10 +32,10 @@ void Heap::insert(char *key)
 		parent=iparent(child);
 	}
 }
-char * Heap::removeMin()
+ArrayDictionaryNode * Heap::removeMin()
 {
 	assert(n>0);
-	char *minKey=array[0]->key;
+	ArrayDictionaryNode *minKey=array[0];
 	n--;
 	if(n==0) {
 		return minKey;
@@ -49,7 +49,7 @@ char * Heap::removeMin()
 		if(right<n && strcmp(array[right]->key,array[left]->key)<0) {
 			minChild=left;
 		}
-		if(strcmp(array[parent]->key,array[minChild]->key)<0)) {
+		if(strcmp(array[parent]->key,array[minChild]->key)<0) {
 			break;
 		}
 		ArrayDictionaryNode *tmp=array[minChild];

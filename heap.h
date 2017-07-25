@@ -1,4 +1,5 @@
 #include <string.h>
+#include <assert.h>
 
 class Heap {
 	int n;
@@ -6,10 +7,10 @@ class Heap {
 	ArrayDictionaryNode **array;
 public:
 	Heap(int maxSize);
-	void insert(int key);
-	int removeMin();
+	void insert(ArrayDictionaryNode *e);
+	ArrayDictionaryNode* removeMin();
 	~Heap();
-}
+};
 
 
 #define left_child(i) (2*i+1)

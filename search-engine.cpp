@@ -1,10 +1,21 @@
 
 #include <string.h>
+#include <string>
 #include "search-engine.h"
 
 SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   MiniHTTPD(port)
 {
+	switch(dictionaryType) {
+		case ArrayDictionaryType:
+			break;
+		case HashDictionaryType:
+			break;
+		case AVLDictionaryType:
+			break;
+		case BinarySearchDictionaryType:
+			break;
+	}
   // Create dictionary of the indicated type
 
   // Populate dictionary and sort it if necessary
@@ -28,7 +39,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
   // TODO: The words to search in "documentRequested" are in the form
   // /search?word=a+b+c
-  //
+  // search = "this is the search"
+  // documentRequested= "/search?word=this+is+the+search"
   // You need to separate the words before search
   // Search the words in the dictionary and find the URLs that
   // are common for al the words. Then print the URLs and descriptions
@@ -37,9 +49,17 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   // Here the URLs printed are hardwired
   
   const int nurls=2;
-
-  const char * words = "data structures";
-
+	
+	std::string s(documentRequested);
+	s.erase(0,13);
+	//printf("%s\n",s.c_str());
+	ReplaceStringInPlace(s,std::string("+"),std::string(" "));
+	//printf("%s\n",s.c_str());
+  const char * words = s.c_str();
+	
+	
+	
+	
   const char * urls[] = {
     "http://www.cs.purdue.edu",
     "http://www.cs.purdue.edu/homes/cs251"
@@ -117,4 +137,13 @@ int main(int argc, char ** argv)
   httpd.run();
 
   return 0;
+}
+
+void SearchEngine::ReplaceStringInPlace(std::string& subject, const std::string& search,
+                          const std::string& replace) {
+    size_t pos = 0;
+    while ((pos = subject.find(search, pos)) != std::string::npos) {
+         subject.replace(pos, search.length(), replace);
+         pos += replace.length();
+    }
 }

@@ -45,7 +45,7 @@ minihttpd: minihttpd.h minihttpd.cpp
 	g++ -g -o minihttpd -DSTANDALONE minihttpd.cpp -lnsl -lsocket
 
 git-commit:
-	git add Makefile *.h *.cpp testall.out >> .local.git.out || echo
+	git add Makefile README *.h *.cpp testall.out >> .local.git.out || echo
 	git commit
 
 

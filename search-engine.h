@@ -14,6 +14,7 @@ enum DictionaryType {
 class SearchEngine : public MiniHTTPD {
   Dictionary * _wordToURLList;
   
+  void ReplaceStringInPlace(std::string& subject, const std::string& search, const std::string& replace);
   // Add any other member variables you need
  public:
   // Constructor for SearchEngine
