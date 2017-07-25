@@ -5,10 +5,11 @@ Heap::Heap(int maxSize)
 	n=0;
 	nmax=maxSize;
 	array= new ArrayDictionaryNode *[nmax];
-	/*for(int i=0;i<nmax;i++)
+	
+  for(int i=0;i<nmax;i++)
 	{
-		array[i]=(ArrayDictionaryNode *)malloc(sizeof(ArrayDictionaryNode *));
-	}*/
+		array[i]=NULL;
+	}
 }
 Heap::~Heap()
 {
