@@ -22,12 +22,12 @@ AVLDictionary::AVLDictionary()
 bool
 AVLDictionary::addRecord( KeyType key, DataType record)
 {
-	if ( debug) {
+	/*if ( debug) {
 		printf("------------------------------------\n");
 		printf("addRecord(\"%s\",%ld)\n",  key, (long) record);
 		printf("---------- Before -----------------\n");
 		printNode("", root, 0);
-	}
+	}*/
 	
 	// Add your implementation here
 	AVLNode *current = root;
@@ -54,7 +54,7 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 	n->height=1;
 	if(previous == NULL) {
 		root = n;
-		return false;
+		return true;
 	}
 	if(strcmp(key,previous->key)<0) {
 		previous->left = n;
@@ -82,19 +82,19 @@ AVLDictionary::addRecord( KeyType key, DataType record)
 	//Height might not be valid anymore.
 	//We need to restructure .
 
-	if ( debug) {
+	/*if ( debug) {
 		printf("---------- Before Restructure -----------------\n");
 		printNode("", root, 0);
-	}
+	}*/
 	
 	// Call restructure
 	restructure(n);
-	if (debug) {
+	/*if (debug) {
 		checkRecursive(root);
 		
 		printf("---------- After Restructure -----------------\n");
 		printNode("", root, 0);
-	}
+	}*/
 	return true;
 }
 
