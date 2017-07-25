@@ -19,7 +19,7 @@ void Heap::insert(ArrayDictionaryNode *e)
 	assert(n<nmax);
 	array[n]->key=strdup(e->key);
 	n++;
-	int child = n-1;p arr
+	int child = n-1;
 	int parent=iparent(child);
 	while(child>0) {
 		if(strcmp(array[child]->key,array[parent]->key)>0) {
