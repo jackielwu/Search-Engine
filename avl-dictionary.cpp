@@ -275,6 +275,7 @@ AVLDictionary::findRecord( KeyType key)
 bool
 AVLDictionary::removeElement(KeyType key)
 {
+  return false;
 	if (debug) {
 		printf("------------------------------------\n");
 		printf("removeElement(\"%s\")\n",  key);
