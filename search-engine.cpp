@@ -1,13 +1,15 @@
 
 #include <string.h>
+#include <stdlib.h>
 #include <string>
+#include <fstream>
 #include "search-engine.h"
 
 SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   MiniHTTPD(port)
 {
-	FILE *fp;
-	fp = fopen("word.txt","r");
+	//FILE *fp;
+	//fp = fopen("word.txt","r");
 	switch(dictionaryType) {
 		case ArrayDictionaryType:
 			_wordToURLList = new ArrayDictionary();
@@ -23,19 +25,50 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			break;
 	}
   // Create dictionary of the indicated type
-	char **word= new char*[100];
+	//char **word= new char*[100];
+	printf("load word\n");
+	std::fstream fs("word.txt",std::fstream::in);
+	if(fs.is_open()) {
+		while(!fs.eof()) {
+			std::string line;
+			std::getline(fs,line);
+			char *tokens;
+			strcpy(tokens,line.c_str());
+			printf("%s\n",tokens);
+			char *word = strtok(tokens," ");
+			char *index = strtok(NULL," ");
+			URLRecordList *list = new URLRecordList();
+			URLRecordList *e = list;
+			while(index!=NULL) {
+				e->_index = atoi(index);
+				printf("%d ",e->_index);
+				URLRecordList *n = new URLRecordList();
+				e->_next = n;
+				e=e->_next;
+				index = strtok(NULL," ");
+			}
+			_wordToURLList->addRecord((const char *)word, (URLRecordList *)list);
+			printf("\n");
+		}
+		fs.close();
+		printf("loaded word\n");
+	}
+	
+	
   // Populate dictionary and sort it if necessary
-  if(fp!=NULL) {
+  /*if(fp!=NULL) {
   	while(!feof(fp))
   	{
   		URLRecordList *num = new URLRecordList();
   		URLRecordList *e=num;
   		int i=0;
-  		fscanf(fp,"%s", word[i++]);
+  		//char line[5000];
+  		//fgets(line,4999,fp);
+  		//fscanf(fp,"%s", word[i++]);
   		
   		char c;
   		do {
-  			fscanf(fp,"%d%c",&e->_urlRecordIndex,&c);
+  			//fscanf(fp,"%d%c",&e->_urlRecordIndex,&c);
   			URLRecordList *n = new URLRecordList();
   			e->_next=n;
   			e=e->_next;
@@ -43,9 +76,9 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
   	}
   	fclose(fp);
-  }
+  }*/
   urlArray=new URLRecord[500];
-  fp=fopen("url.txt","r");
+  /*fp=fopen("url.txt","r");
   if(fp!=NULL) {
   	while(!feof(fp))
   	{
@@ -65,7 +98,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		urlArray[i++]=*e;
   	}
   	fclose(fp);
-  }
+  }*/
 }
 
 void
@@ -122,16 +155,16 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	if(i==1) {
 		URLRecordList *e = data[0];
 		while(e!=NULL) {
-			urls[nurls]=strdup(urlArray[e->_urlRecordIndex]._url);
-			description[nurls]=strdup(urlArray[e->_urlRecordIndex]._description);
+			urls[nurls]=strdup(urlArray[e->_index]._url);
+			description[nurls]=strdup(urlArray[e->_index]._description);
 			nurls++;
 			e=e->_next;
 		}
 	}
-	else {
+	/*else {
 		bool intersect =false;
 		URLRecordList *e = data[0];
-		int index = e->_urlRecordIndex;
+		int index = e->_index;
 		while(e!=NULL) {
 			for(int j=1;j<i;j++) {
 				if(!findURL(data[j],index)) {
@@ -143,13 +176,13 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 				}
 			}
 			e=e->_next;
-			index=e->_urlRecordIndex;
+			index=e->_index;
 		}
 		if(intersect) {
 			
 		}
 
-	}
+	}*/
 	
 	
 	
@@ -239,7 +272,7 @@ int main(int argc, char ** argv)
 bool SearchEngine::findURL(URLRecordList *list, int index) {
 	URLRecordList *e=list;
 	while(e!=NULL) {
-		if(e->_urlRecordIndex == index) {
+		if(e->_index == index) {
 			return true;
 		}
 		e=e->_next;

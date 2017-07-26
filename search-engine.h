@@ -24,7 +24,7 @@ struct URLRecord {
 };
 
 struct URLRecordList {
-  int _urlRecordIndex;     // Index into the URL Array
+  int _index;     // Index into the URL Array
   URLRecordList * _next;   // Pointer to the next URL Record in the list
 };
 
