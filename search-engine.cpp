@@ -140,7 +140,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
   // Here the URLs printed are hardwired
   
-  int nurls=0;
+  //int nurls=0;
+  const int nurls=2;
 	
 	std::string s(documentRequested);
 	s.erase(0,13);
@@ -156,7 +157,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		token = strtok(NULL," ");
 		i++;
 	}
-	const char *urls[500];
+	/*const char *urls[500];
 	const char *description[500];
 	URLRecordList *data[10];
 	for(int j=0;j<i;i++) {
@@ -170,7 +171,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			nurls++;
 			e=e->_next;
 		}
-	}
+	}*/
 	/*else {
 		bool intersect =false;
 		URLRecordList *e = data[0];
@@ -196,7 +197,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	
 	
 	
-  /*const char * urls[] = {
+  const char * urls[] = {
     "http://www.cs.purdue.edu",
     "http://www.cs.purdue.edu/homes/cs251"
   };
@@ -204,7 +205,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   const char * description[] = {
     "Computer Science Department. Purdue University.",
     "CS251 Data Structures"
-  };*/
+  };
 
 	clock_gettime(CLOCK_REALTIME,&stop);
 	timeelapsed = stop.tv_nsec - start.tv_nsec;
