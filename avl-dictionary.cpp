@@ -334,19 +334,20 @@ AVLDictionary::removeElement(KeyType key)
 					delete e;
 					return true;
 				}
-
-				AVLNode *tmp = e->right;
-				while(tmp->left!=NULL) {
-					tmp=tmp->left;
+				else {
+					AVLNode *tmp = e->right;
+					while(tmp->left!=NULL) {
+						tmp=tmp->left;
+					}
+					printf("%s\n",tmp->key);
+					e->key=strdup(tmp->key);
+					e->data=tmp->data;
+					AVLNode *z = e->parent;
+					free((char *)tmp->key);
+					delete tmp;
+					restructure(z);
+					return true;
 				}
-
-				e->key=strdup(tmp->key);
-				e->data=tmp->data;
-				AVLNode *z = e->parent;
-				free((char *)tmp->key);
-				delete tmp;
-				restructure(z);
-				return true;
 			}
 		}
 	}
