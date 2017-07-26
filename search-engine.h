@@ -34,7 +34,7 @@ class SearchEngine : public MiniHTTPD {
   bool debug;
   void ReplaceStringInPlace(std::string& subject, const std::string& search, const std::string& replace);
   // Add any other member variables you need
-  URLRecord *urlArray;
+  URLRecord **urlArray;
   bool findURL(URLRecordList *list, int index);
  public:
   // Constructor for SearchEngine

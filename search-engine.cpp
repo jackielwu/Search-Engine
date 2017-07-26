@@ -67,7 +67,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   // Populate dictionary and sort it if necessary
   FILE *fp;
 	fp = fopen("word.txt","r");
-	printf("load word\n");
+	//printf("load word\n");
   if(fp!=NULL) {
   	while(!feof(fp))
   	{
@@ -101,8 +101,52 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   	//fclose(fp);
   	//printf("end word\n");
   }
-  fclose(fp);
-  urlArray=new URLRecord[500];
+  urlArray=new URLRecord*[500];
+  FILE *urlf;
+	urlf = fopen("word.txt","r");
+	
+	if(urlf!=NULL) {
+		int i =0;
+  	while(!feof(urlf))
+  	{
+  		//char word[100];
+  		URLRecord *e = new URLRecord;
+  		//URLRecordList *num = new URLRecordList();
+  		char line[5000];
+  		fgets(line,4999,urlf);
+  		int index;
+  		char url[200];
+  		char desc[600];
+  		sscanf(line,"%d %s\n%s",&index,url,desc);
+  		printf("%s\n%s\n",url,desc);
+  		/*char *index = strtok(line," ");
+  		//printf("%s",word);
+  		char *index = strtok(NULL," ");
+  		//fscanf(fp,"%s", word[i++]);
+  		//sscanf(line,"%s ",word);
+  		//printf("here\n");
+  		while(index!=NULL){
+  			//fscanf(fp,"%d%c",&e->_index,&c);
+  			//int ni =sscanf(line,"%d ",e->_index);
+  			
+  			e->_index=atoi(index);
+  			//printf(" %d",e->_index);
+  			URLRecordList *n = new URLRecordList();
+  			e->_next=n;
+  			e=e->_next;
+				index = strtok(NULL," ");
+  		}*/
+  		//printf("\n");
+  		//_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
+  		e->_url = strdup(url);
+  		e->_description = strdup(desc);
+  		urlArray[i++]=e;
+  	}
+  	//fclose(fp);
+  	//printf("end word\n");
+  }
+	
+  
   /*fp=fopen("url.txt","r");
   if(fp!=NULL) {
   	while(!feof(fp))
