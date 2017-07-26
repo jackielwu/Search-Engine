@@ -149,7 +149,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	//printf("%s\n",s.c_str());
   const char * words = s.c_str();
   
-	char *token = strtok((char *)words," ");
+	/*char *token = strtok((char *)words," ");
 	char *word[10];
 	int i=0;
 	while(token != NULL) {
@@ -157,8 +157,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		token = strtok(NULL," ");
 		i++;
 	}
-	printf("%s\n",words);
-	/*if(debug){
+	//printf("%s\n",words);
+	if(debug){
 	int nurls=0;
 	const char *urls[500];
 	const char *description[500];
