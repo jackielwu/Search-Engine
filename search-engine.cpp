@@ -105,7 +105,6 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   urlArray=new URLRecord*[max];
   FILE *urlf;
 	urlf = fopen("url.txt","r");
-	int i =0;
 	if(urlf!=NULL) {
   	while(!feof(urlf))
   	{
@@ -141,8 +140,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		//_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
   		e->_url = strdup(url);
   		e->_description = strdup(desc);
-  		urlArray[i++]=e;
-  		printf("%d\n",i);
+  		urlArray[index]=e;
+  		printf("%d\n",index);
   	}
   	//fclose(fp);
   	//printf("end word\n");
