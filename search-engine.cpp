@@ -79,11 +79,11 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		fgets(line,4999,fp);
   		
   		char *word = strtok(line," ");
-  		printf("here\n");
+  		printf("%s",word);
   		char *index;
   		//fscanf(fp,"%s", word[i++]);
   		//sscanf(line,"%s ",word);
-  		printf("%s",word);
+  		printf("here\n");
   		do {
   			//fscanf(fp,"%d%c",&e->_index,&c);
   			//int ni =sscanf(line,"%d ",e->_index);
