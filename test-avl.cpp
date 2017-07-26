@@ -16,7 +16,7 @@ main( int argc, char **argv)
 	for ( i = 0; i < max; i++) {
 		char key[20];
 		long k = i%79;
-		sprintf(key, "k%ld", k);
+		printf(key, "k%ld", k);
 		dict->addRecord(key, (void*) k);
 	}
 
@@ -25,7 +25,7 @@ main( int argc, char **argv)
 		int k = i%79;
 		if (k%2==0) {
 			// Remove even keys
-			sprintf(key, "k%d", k);
+			printf(key, "k%d", k);
 			dict->removeElement(key);
 		}
 	}
