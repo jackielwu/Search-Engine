@@ -51,12 +51,12 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				URLRecordList *n = new URLRecordList();
 				e=n;
 				e->_index = atoi(index);
-				printf("%d ",e->_index);
+				//printf("%d ",e->_index);
 				e->_next=NULL;
 				e=e->_next;
 				index = strtok(NULL," ");
 			}
-			printf("::: till here :::\n");
+			printf("::: till here :::%s\n", word);
 			_wordToURLList->addRecord((const char*)word, (URLRecordList *)list);
 			printf("\n");
 		}
