@@ -33,7 +33,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			std::string line;
 			std::getline(fs,line);
 			char *tokens = strdup(line.c_str());
-			printf("%s\n",tokens);
+			//printf("%s\n",tokens);
 			char *word = strtok(tokens," ");
 			char *index = strtok(NULL," ");
 			URLRecordList *list = new URLRecordList();
