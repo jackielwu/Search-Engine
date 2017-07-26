@@ -101,7 +101,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   	//fclose(fp);
   	//printf("end word\n");
   }
-  urlArray=new URLRecord*[1000];
+  urlArray=new URLRecord*[10000];
   FILE *urlf;
 	urlf = fopen("url.txt","r");
 	
