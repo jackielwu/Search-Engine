@@ -156,7 +156,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		token = strtok(NULL," ");
 		i++;
 	}
-	if(debug){
+	/*if(debug){
 	int nurls=0;
 	const char *urls[500];
 	const char *description[500];
@@ -195,7 +195,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		}
 
 	}
-	}
+	}*/
 	
 
   const char * urls[] = {
