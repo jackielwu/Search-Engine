@@ -113,12 +113,12 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		//URLRecordList *num = new URLRecordList();
   		char parse[5000];
   		fgets(parse,4999,urlf);
-  		printf("%s\n",parse);
+  		//printf("%s\n",parse);
   		int index;
   		char url[200];
   		char desc[600];
   		sscanf(parse,"%d %s\n%s",&index,url,desc);
-  		printf("%d %s\n",index,url);
+  		//printf("%d %s\n",index,url);
   		/*char *index = strtok(line," ");
   		//printf("%s",word);
   		char *index = strtok(NULL," ");
@@ -141,7 +141,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		e->_url = strdup(url);
   		e->_description = strdup(desc);
   		urlArray[index]=e;
-  		printf("%d\n",index);
+  		//printf("%d\n",index);
   	}
   	//fclose(fp);
   	//printf("end word\n");
@@ -229,12 +229,12 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	data[0]=(URLRecordList *)_wordToURLList->findRecord(word[0]);
 	if(i==1) {
 		URLRecordList *e = data[0];
-		//while(e!=NULL) {
+		while(e!=NULL) {
 			urls[nurls]=strdup(urlArray[e->_index]->_url);
 			description[nurls]=strdup(urlArray[e->_index]->_description);
 			nurls++;
 			e=e->_next;
-		//}
+		}
 	}
 	/*else {
 		bool intersect =false;
