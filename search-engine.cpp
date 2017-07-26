@@ -55,7 +55,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				e=e->_next;
 				index = strtok(NULL," ");
 			}
-			_wordToURLList->addRecord(word, list);
+			_wordToURLList->addRecord((const char*)word, (URLRecordList *)list);
 			printf("\n");
 		}
 		fs.close();
