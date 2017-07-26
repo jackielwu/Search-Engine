@@ -4,6 +4,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 #include "array-dictionary.h"
 
@@ -20,6 +21,7 @@ bool
 ArrayDictionary::addRecord( KeyType key, DataType record)
 {
 	for(int i=0;i<currentNumber;i++) {
+		printf("array-dict: %s\n", array[i]->key);
 		if(strcmp(key,array[i]->key)==0) {
 			array[i]->data = record;
 			return false;
