@@ -119,7 +119,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		char desc[600];
   		sscanf(parse,"%d %s",&index,url);
   		fgets(desc,500,urlf);
-  		//printf("%d %s\n",index,desc);
+  		printf("%d %s\n",index,desc);
   		/*char *index = strtok(line," ");
   		//printf("%s",word);
   		char *index = strtok(NULL," ");
