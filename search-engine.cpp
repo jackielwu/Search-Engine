@@ -8,6 +8,7 @@
 SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   MiniHTTPD(port)
 {
+	debug =true;
 	//FILE *fp;
 	//fp = fopen("word.txt","r");
 	switch(dictionaryType) {
@@ -26,7 +27,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	}
   // Create dictionary of the indicated type
 	//char **word= new char*[100];
-	if(false){
+	if(debug){
 	printf("load word\n");
 	std::ifstream fs("word.txt",std::ifstream::in);
 	if(fs.is_open()) {
@@ -139,8 +140,6 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   // in HTML. Make the output look nicer.
 
   // Here the URLs printed are hardwired
-  
-  //int nurls=0;
   const int nurls=2;
 	
 	std::string s(documentRequested);
@@ -157,7 +156,9 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		token = strtok(NULL," ");
 		i++;
 	}
-	/*const char *urls[500];
+	if(debug){
+	int nurls=0;
+	const char *urls[500];
 	const char *description[500];
 	URLRecordList *data[10];
 	for(int j=0;j<i;i++) {
@@ -171,8 +172,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			nurls++;
 			e=e->_next;
 		}
-	}*/
-	/*else {
+	}
+	else {
 		bool intersect =false;
 		URLRecordList *e = data[0];
 		int index = e->_index;
@@ -193,10 +194,10 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			
 		}
 
-	}*/
+	}
+	}
 	
-	
-	
+
   const char * urls[] = {
     "http://www.cs.purdue.edu",
     "http://www.cs.purdue.edu/homes/cs251"

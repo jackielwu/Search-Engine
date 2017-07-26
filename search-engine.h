@@ -31,7 +31,7 @@ struct URLRecordList {
 // Inherits from MiniHTTPD
 class SearchEngine : public MiniHTTPD {
   Dictionary * _wordToURLList;
-  
+  bool debug;
   void ReplaceStringInPlace(std::string& subject, const std::string& search, const std::string& replace);
   // Add any other member variables you need
   URLRecord *urlArray;
