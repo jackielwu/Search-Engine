@@ -32,7 +32,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		URLRecordList *num = new URLRecordList();
   		URLRecordList *e=num;
   		int i=0;
-  		fscanf(fp,"%s ", word[i++]);
+  		fscanf(fp,"%s", word[i++]);
   		
   		char c;
   		do {
