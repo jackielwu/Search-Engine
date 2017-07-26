@@ -82,7 +82,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		char c='a';
   		do {
   			//fscanf(fp,"%d%c",&e->_index,&c);
-  			int ni =sscanf(line,"%d ",&e->_index);
+  			int ni =sscanf(line,"%d ",e->_index);
   			printf(".%d",ni);
   			URLRecordList *n = new URLRecordList();
   			e->_next=n;
