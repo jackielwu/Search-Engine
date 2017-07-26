@@ -217,7 +217,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		token = strtok(NULL," ");
 		i++;
 	}
-	//printf("%s\n",words);
+	printf("%d\n",i);
 
 	int nurls=0;
 	const char *urls[500];
