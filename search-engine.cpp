@@ -80,10 +80,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		
   		char *word = strtok(line," ");
   		printf("%s",word);
-  		char *index;
+  		char *index=NULL;
   		//fscanf(fp,"%s", word[i++]);
   		//sscanf(line,"%s ",word);
-  		printf("here\n");
+  		//printf("here\n");
   		do {
   			//fscanf(fp,"%d%c",&e->_index,&c);
   			//int ni =sscanf(line,"%d ",e->_index);
