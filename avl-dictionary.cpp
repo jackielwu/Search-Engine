@@ -310,7 +310,7 @@ AVLDictionary::removeElement(KeyType key)
 					delete e;
 					return true;
 				}
-				if(e->left==NULL) {
+				else if(e->left==NULL) {
 					e->right->parent=e->parent;
 					if(isleft) {
 						e->parent->left=e->right;
@@ -322,7 +322,7 @@ AVLDictionary::removeElement(KeyType key)
 					delete e;
 					return true;
 				}
-				if(e->right==NULL) {
+				else if(e->right==NULL) {
 					e->left->parent=e->parent;
 					if(isleft) {
 						e->parent->left=e->left;
