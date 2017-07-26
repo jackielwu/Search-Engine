@@ -26,6 +26,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	}
   // Create dictionary of the indicated type
 	//char **word= new char*[100];
+	if(false){
 	printf("load word\n");
 	std::ifstream fs("word.txt",std::ifstream::in);
 	if(fs.is_open()) {
@@ -107,6 +108,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   	}
   	fclose(fp);
   }*/
+  }
 }
 
 void
