@@ -84,7 +84,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		do {
   			//fscanf(fp,"%d%c",&e->_index,&c);
   			//int ni =sscanf(line,"%d ",e->_index);
-  			index = strtok(line," ");
+  			index = strtok(NULL," ");
   			e->_index=atoi(index);
   			printf(" %d",e->_index);
   			URLRecordList *n = new URLRecordList();
