@@ -340,7 +340,7 @@ AVLDictionary::removeElement(KeyType key)
 						tmp=tmp->left;
 					}
 					printf("%s\n",tmp->key);
-					e->key=strdup(tmp->key);
+					e->key=tmp->key;
 					e->data=tmp->data;
 					AVLNode *z = e->parent;
 					free((char *)tmp->key);
