@@ -142,6 +142,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		e->_url = strdup(url);
   		e->_description = strdup(desc);
   		urlArray[i++]=e;
+  		printf("%d\n",i);
   	}
   	//fclose(fp);
   	//printf("end word\n");
