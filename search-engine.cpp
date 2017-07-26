@@ -38,12 +38,17 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			printf("%s ",word);
 			char *index = strtok(NULL," ");
 			URLRecordList *list = new URLRecordList();
+			list->_index=atoi(index);
+			list->_next=NULL;
 			URLRecordList *e = list;
+			e=e->_next;
+			index = strtok(NULL," ");
 			while(index!=NULL) {
+				URLRecordList *n = new URLRecordList();
+				e=n;
 				e->_index = atoi(index);
 				printf("%d ",e->_index);
-				URLRecordList *n = new URLRecordList();
-				e->_next = n;
+				e->_next=NULL;
 				e=e->_next;
 				index = strtok(NULL," ");
 			}
