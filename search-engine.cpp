@@ -83,7 +83,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		do {
   			//fscanf(fp,"%d%c",&e->_index,&c);
   			sscanf(line,"%d%c",&e->_index,&c);
-  			printf(" %d%c",e->_index,c);
+  			printf(".%d%c",e->_index,c);
   			URLRecordList *n = new URLRecordList();
   			e->_next=n;
   			e=e->_next;
@@ -299,6 +299,10 @@ bool SearchEngine::findURL(URLRecordList *list, int index) {
 	}
 	return false;
 }
+
+/*char *SearchEngine::findWord(char *line) {
+	
+}*/
 
 void SearchEngine::ReplaceStringInPlace(std::string& subject, const std::string& search,
                           const std::string& replace) {
