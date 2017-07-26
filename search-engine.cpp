@@ -28,7 +28,6 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   if(fp!=NULL) {
   	while(!feof(fp))
   	{
-  		char *word[100];
   		URLRecordList *num = new URLRecordList();
   		URLRecordList *e=num;
   		int i=0;
