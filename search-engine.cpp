@@ -35,10 +35,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			char *tokens = strdup(line.c_str());
 			//printf("%s\n",tokens);
 			char *word = strtok(tokens," ");
-			if(word==NULL) {
-				continue;
-			}
-			printf("%s ",word);
+			printf("%d ",strlen(word));
 			char *index = strtok(NULL," ");
 			printf("index: .%s. ",index);
 			URLRecordList *list = new URLRecordList();
