@@ -307,7 +307,7 @@ AVLDictionary::removeElement(KeyType key)
 				if(e->left==NULL && e->right==NULL) {
 					free((char *)e->key);
 					e=NULL;
-					
+					delete e;
 					return true;
 				}
 				if(e->left==NULL) {
