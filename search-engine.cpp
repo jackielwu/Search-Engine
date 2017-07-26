@@ -82,12 +82,13 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		char c;
   		do {
   			//fscanf(fp,"%d%c",&e->_index,&c);
-  			sscanf(line,"%d%c",&e->_index,&c);
-  			printf(".%d%c",e->_index,c);
+  			sscanf(line,"%d",&e->_index);
+  			printf(".%d",e->_index);
   			URLRecordList *n = new URLRecordList();
   			e->_next=n;
   			e=e->_next;
-  		} while(c!='\n');
+  			i++;
+  		} while(i<10);
   		printf("\n");
   		_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
   	}
