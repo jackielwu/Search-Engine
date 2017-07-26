@@ -101,12 +101,12 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   	//fclose(fp);
   	//printf("end word\n");
   }
-  urlArray=new URLRecord*[10000];
+  int max =10000;
+  urlArray=new URLRecord*[max];
   FILE *urlf;
 	urlf = fopen("url.txt","r");
-	
+	int i =0;
 	if(urlf!=NULL) {
-		int i =0;
   	while(!feof(urlf))
   	{
   		//char word[100];
