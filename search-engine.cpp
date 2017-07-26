@@ -112,13 +112,15 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		URLRecord *e = new URLRecord;
   		//URLRecordList *num = new URLRecordList();
   		char parse[5000];
+  		char desc[600];
   		fgets(parse,4999,urlf);
+  		fgets(desc,500,urlf);
   		//printf("%s\n",parse);
   		int index;
   		char url[200];
-  		char desc[600];
+  		
   		sscanf(parse,"%d %s",&index,url);
-  		fgets(desc,500,urlf);
+  		
   		printf("%d %s\n",index,desc);
   		/*char *index = strtok(line," ");
   		//printf("%s",word);
