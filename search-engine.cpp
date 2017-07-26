@@ -27,7 +27,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   // Create dictionary of the indicated type
 	//char **word= new char*[100];
 	printf("load word\n");
-	std::fstream fs("word.txt",std::fstream::in);
+	std::ifstream fs("word.txt",std::ifstream::in);
 	if(fs.is_open()) {
 		while(!fs.eof()) {
 			std::string line;
