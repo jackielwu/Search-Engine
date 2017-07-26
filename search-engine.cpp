@@ -70,25 +70,28 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   if(fp!=NULL) {
   	while(!feof(fp))
   	{
-  		char word[100];
+  		//char word[100];
   		URLRecordList *num = new URLRecordList();
   		URLRecordList *e=num;
   		int i=0;
   		char line[5000];
   		fgets(line,4999,fp);
+  		char *word = strtok(line," ");
+  		char *index;
   		//fscanf(fp,"%s", word[i++]);
-  		sscanf(line,"%s ",word);
+  		//sscanf(line,"%s ",word);
   		printf("%s",word);
-  		char c='a';
   		do {
   			//fscanf(fp,"%d%c",&e->_index,&c);
-  			int ni =sscanf(line,"%d ",e->_index);
-  			printf(".%d",ni);
+  			//int ni =sscanf(line,"%d ",e->_index);
+  			index = strtok(line," ");
+  			e->_index=atoi(index);
+  			printf(" %d",e->_index);
   			URLRecordList *n = new URLRecordList();
   			e->_next=n;
   			e=e->_next;
   			i++;
-  		} while(i<10);
+  		} while(index!=NULL);
   		printf("\n");
   		_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
   	}
