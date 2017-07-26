@@ -308,23 +308,23 @@ AVLDictionary::removeElement(KeyType key)
 					return true;
 				}
 				if(e->left==NULL) {
-					e->left->parent=e->parent;
-					if(isleft) {
-						e->parent->left=e->left;
-					}
-					else {
-						e->parent->right=e->left;
-					}
-					delete e;
-					return true;
-				}
-				if(e->right==NULL) {
 					e->right->parent=e->parent;
 					if(isleft) {
 						e->parent->left=e->right;
 					}
 					else {
 						e->parent->right=e->right;
+					}
+					delete e;
+					return true;
+				}
+				if(e->right==NULL) {
+					e->left->parent=e->parent;
+					if(isleft) {
+						e->parent->left=e->left;
+					}
+					else {
+						e->parent->right=e->left;
 					}
 					delete e;
 					return true;
