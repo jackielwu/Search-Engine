@@ -235,7 +235,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			e=e->_next;
 		}
 	}
-	else {
+	/*else {
 		bool intersect =false;
 		URLRecordList *e = data[0];
 		int index = e->_index;
@@ -256,7 +256,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			
 		}
 
-	}
+	}*/
 	
 	
 /*
