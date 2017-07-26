@@ -46,7 +46,7 @@ main( int argc, char **argv)
 		}
 	}
 
-dict->print();
+	dict->print();
 	dict->check();
 
 	printf(">>> test-avl passed\n\n");
