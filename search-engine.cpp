@@ -80,21 +80,21 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		
   		char *word = strtok(line," ");
   		printf("%s",word);
-  		char *index=NULL;
+  		char *index = strtok(NULL," ");
   		//fscanf(fp,"%s", word[i++]);
   		//sscanf(line,"%s ",word);
   		//printf("here\n");
-  		do {
+  		while(index!=NULL){
   			//fscanf(fp,"%d%c",&e->_index,&c);
   			//int ni =sscanf(line,"%d ",e->_index);
-  			index = strtok(NULL," ");
+  			
   			e->_index=atoi(index);
   			printf(" %d",e->_index);
   			URLRecordList *n = new URLRecordList();
   			e->_next=n;
   			e=e->_next;
-  			i++;
-  		} while(index!=NULL);
+				index = strtok(NULL," ");
+  		}
   		printf("\n");
   		_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
   	}
