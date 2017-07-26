@@ -77,13 +77,13 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		char line[5000];
   		fgets(line,4999,fp);
   		//fscanf(fp,"%s", word[i++]);
-  		sscanf(line,"%s",word);
+  		sscanf(line,"%s ",word);
   		printf("%s",word);
   		char c;
   		do {
   			//fscanf(fp,"%d%c",&e->_index,&c);
-  			sscanf(line,"%d",&e->_index);
-  			printf(".%d",e->_index);
+  			int ni =sscanf(line,"%d ",&e->_index);
+  			printf(".%d",ni);
   			URLRecordList *n = new URLRecordList();
   			e->_next=n;
   			e=e->_next;
