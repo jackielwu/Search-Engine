@@ -223,9 +223,10 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	const char *urls[500];
 	const char *description[500];
 	URLRecordList *data[10];
-	for(int j=0;j<i;i++) {
+	/*for(int j=0;j<i;i++) {
 		data[j]=(URLRecordList *)_wordToURLList->findRecord(word[j]);
-	}
+	}*/
+	data[0]=(URLRecordList *)_wordToURLList->findRecord(word[0]);
 	if(i==1) {
 		URLRecordList *e = data[0];
 		//while(e!=NULL) {
