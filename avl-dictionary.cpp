@@ -289,6 +289,7 @@ AVLDictionary::removeElement(KeyType key)
 		e=root;
 		if(strcmp(key,root->key)==0) {
 			root=NULL;
+			free((char *)e->key);
 			delete e;
 			return true;
 		}
@@ -315,6 +316,7 @@ AVLDictionary::removeElement(KeyType key)
 					else {
 						e->parent->right=e->right;
 					}
+					free((char *)e->key);
 					delete e;
 					return true;
 				}
@@ -326,6 +328,7 @@ AVLDictionary::removeElement(KeyType key)
 					else {
 						e->parent->right=e->left;
 					}
+					free((char *)e->key);
 					delete e;
 					return true;
 				}
@@ -338,7 +341,7 @@ AVLDictionary::removeElement(KeyType key)
 				e->key=strdup(tmp->key);
 				e->data=tmp->data;
 				AVLNode *z = e->parent;
-				
+				free((char *)tmp->key);
 				delete tmp;
 				restructure(z);
 				return true;
