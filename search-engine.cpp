@@ -40,9 +40,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			char *index = strtok(NULL," ");
 			//printf("index: .%s. ",index);
 			URLRecordList *list = new URLRecordList();
-			if(index !=NULL) {
-				list->_index=atoi(index);
-			}
+			list->_index=atoi(index);
 			list->_next=NULL;
 			URLRecordList *e = list;
 			e=e->_next;
