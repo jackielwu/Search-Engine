@@ -37,6 +37,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			char *word = strtok(tokens," ");
 			printf("%s ",word);
 			char *index = strtok(NULL," ");
+			printf("index: %s\n",index);
 			URLRecordList *list = new URLRecordList();
 			list->_index=atoi(index);
 			list->_next=NULL;
