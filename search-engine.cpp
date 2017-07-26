@@ -32,8 +32,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		while(!fs.eof()) {
 			std::string line;
 			std::getline(fs,line);
-			char *tokens;
-			strcpy(tokens,line.c_str());
+			char *tokens = strdup(line.c_str());
 			printf("%s\n",tokens);
 			char *word = strtok(tokens," ");
 			char *index = strtok(NULL," ");
