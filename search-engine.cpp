@@ -114,14 +114,14 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		char parse[5000];
   		char desc[600];
   		fgets(parse,4999,urlf);
-  		fgets(desc,500,urlf);
+  		fgets(desc,599,urlf);
   		//printf("%s\n",parse);
   		int index;
   		char url[200];
   		
   		sscanf(parse,"%d %s",&index,url);
   		
-  		printf("%d %s\n",index,desc);
+  		printf("%d %s\n%s\n",index,url,desc);
   		/*char *index = strtok(line," ");
   		//printf("%s",word);
   		char *index = strtok(NULL," ");
