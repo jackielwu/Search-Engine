@@ -103,7 +103,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   }
   urlArray=new URLRecord*[500];
   FILE *urlf;
-	urlf = fopen("word.txt","r");
+	urlf = fopen("url.txt","r");
 	
 	if(urlf!=NULL) {
 		int i =0;
