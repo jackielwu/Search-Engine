@@ -113,8 +113,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		//URLRecordList *num = new URLRecordList();
   		char parse[5000];
   		char desc[600];
+  		char spac[10];
   		fgets(parse,4999,urlf);
   		fgets(desc,599,urlf);
+  		fgets(spac,10,urlf);
   		//printf("%s\n",parse);
   		int index;
   		char url[200];
