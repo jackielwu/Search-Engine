@@ -228,12 +228,12 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	}
 	if(i==1) {
 		URLRecordList *e = data[0];
-		while(e!=NULL) {
+		//while(e!=NULL) {
 			urls[nurls]=strdup(urlArray[e->_index]->_url);
 			description[nurls]=strdup(urlArray[e->_index]->_description);
 			nurls++;
 			e=e->_next;
-		}
+		//}
 	}
 	/*else {
 		bool intersect =false;
