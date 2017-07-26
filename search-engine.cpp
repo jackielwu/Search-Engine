@@ -200,7 +200,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   // in HTML. Make the output look nicer.
 
   // Here the URLs printed are hardwired
-  const int nurls=2;
+  //const int nurls=2;
 	
 	std::string s(documentRequested);
 	s.erase(0,13);
@@ -209,7 +209,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	//printf("%s\n",s.c_str());
   const char * words = s.c_str();
   
-	/*char *token = strtok((char *)words," ");
+	char *token = strtok((char *)words," ");
 	char *word[10];
 	int i=0;
 	while(token != NULL) {
@@ -218,7 +218,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		i++;
 	}
 	//printf("%s\n",words);
-	if(debug){
+
 	int nurls=0;
 	const char *urls[500];
 	const char *description[500];
@@ -229,8 +229,8 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	if(i==1) {
 		URLRecordList *e = data[0];
 		while(e!=NULL) {
-			urls[nurls]=strdup(urlArray[e->_index]._url);
-			description[nurls]=strdup(urlArray[e->_index]._description);
+			urls[nurls]=strdup(urlArray[e->_index]->_url);
+			description[nurls]=strdup(urlArray[e->_index]->_description);
 			nurls++;
 			e=e->_next;
 		}
@@ -257,9 +257,9 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		}
 
 	}
-	}*/
 	
-
+	
+/*
   const char * urls[] = {
     "http://www.cs.purdue.edu",
     "http://www.cs.purdue.edu/homes/cs251"
@@ -269,7 +269,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
     "Computer Science Department. Purdue University.",
     "CS251 Data Structures"
   };
-
+*/
 	clock_gettime(CLOCK_REALTIME,&stop);
 	timeelapsed = stop.tv_nsec - start.tv_nsec;
 	
