@@ -79,7 +79,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		fgets(line,4999,fp);
   		
   		char *word = strtok(line," ");
-  		printf("%s",word);
+  		//printf("%s",word);
   		char *index = strtok(NULL," ");
   		//fscanf(fp,"%s", word[i++]);
   		//sscanf(line,"%s ",word);
@@ -89,18 +89,19 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   			//int ni =sscanf(line,"%d ",e->_index);
   			
   			e->_index=atoi(index);
-  			printf(" %d",e->_index);
+  			//printf(" %d",e->_index);
   			URLRecordList *n = new URLRecordList();
   			e->_next=n;
   			e=e->_next;
 				index = strtok(NULL," ");
   		}
-  		printf("\n");
+  		//printf("\n");
   		_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
   	}
   	//fclose(fp);
-  	printf("end word\n");
+  	//printf("end word\n");
   }
+  fclose(fp);
   urlArray=new URLRecord[500];
   /*fp=fopen("url.txt","r");
   if(fp!=NULL) {
