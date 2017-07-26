@@ -30,15 +30,15 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	std::fstream fs("word.txt",std::fstream::in);
 	if(fs.is_open()) {
 		while(!fs.eof()) {
-			std::string line=NULL;
+			std::string line;
 			std::getline(fs,line);
-			printf("length: %d\n",line.length());
+			//printf("length: %d\n",line.length());
 			char *tokens = strdup(line.c_str());
-			printf("%s\n",line.c_str());
+			//printf("%s\n",line.c_str());
 			char *word = strtok(tokens," ");
-			printf("%d ",strlen(word));
+			//printf("%d ",strlen(word));
 			char *index = strtok(NULL," ");
-			printf("index: .%s. ",index);
+			//printf("index: .%s. ",index);
 			URLRecordList *list = new URLRecordList();
 			if(index !=NULL) {
 				list->_index=atoi(index);
@@ -56,6 +56,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				e=e->_next;
 				index = strtok(NULL," ");
 			}
+			printf("::: till here :::\n");
 			_wordToURLList->addRecord((const char*)word, (URLRecordList *)list);
 			printf("\n");
 		}
