@@ -67,6 +67,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   // Populate dictionary and sort it if necessary
   FILE *fp;
 	fp = fopen("word.txt","r");
+	printf("load word\n");
   if(fp!=NULL) {
   	while(!feof(fp))
   	{
