@@ -349,6 +349,7 @@ AVLDictionary::removeElement(KeyType key)
 						restructure(z);
 						return true;
 					}
+					return false;
 				}
 			}
 		}
