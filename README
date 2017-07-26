@@ -1,5 +1,5 @@
 Name: Jackie Wu
 Login: wu891
-Working features: 
-Nonworking features: 
+Working features: array-dict, bsearch-dict, hash-dict
+Nonworking features: avl-dict (seg fault test-avl),
 Extra features: none

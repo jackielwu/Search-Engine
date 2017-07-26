@@ -6,19 +6,67 @@
 SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   MiniHTTPD(port)
 {
+	FILE *fp;
+	fp = fopen("word.txt","r");
 	switch(dictionaryType) {
 		case ArrayDictionaryType:
+			_wordToURLList = new ArrayDictionary();
 			break;
 		case HashDictionaryType:
+			_wordToURLList = new HashDictionary();
 			break;
 		case AVLDictionaryType:
+			_wordToURLList = new AVLDictionary();
 			break;
 		case BinarySearchDictionaryType:
+			_wordToURLList = new BinarySearchDictionary();
 			break;
 	}
   // Create dictionary of the indicated type
-
+	char *word[100];
   // Populate dictionary and sort it if necessary
+  if(fp!=NULL) {
+  	while(!feof(fp))
+  	{
+  		char *word[100];
+  		URLRecordList *num = new URLRecordList();
+  		URLRecordList *e=num;
+  		int i=0;
+  		fscanf(fp,"%s ", word[i++]);
+  		
+  		char c;
+  		do {
+  			fscanf(fp,"%d%c",&e->_urlRecordIndex,&c);
+  			URLRecordList *n = new URLRecordList();
+  			e->_next=n;
+  			e=e->_next;
+  		} while(c!='\n');
+  		_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
+  	}
+  	fclose(fp);
+  }
+  urlArray=new URLRecord[500];
+  fp=fopen("url.txt","r");
+  if(fp!=NULL) {
+  	while(!feof(fp))
+  	{
+  		int d;
+  		int i=0;
+  		URLRecord *e = new URLRecord;
+  		fscanf(fp,"%d ",&d);
+  		fgets(e->_url,500,fp);
+  		fgets(e->_description,600,fp);
+  		std::string s(e->_url);
+  		s.erase(s.length()-1,1);
+  		e->_url=strdup(s.c_str());
+  		std::string s1(e->_description);
+  		s1.erase(s1.length()-1,1);
+  		e->_description=strdup(s1.c_str());
+  		
+  		urlArray[i++]=*e;
+  	}
+  	fclose(fp);
+  }
 }
 
 void
@@ -50,7 +98,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 
   // Here the URLs printed are hardwired
   
-  const int nurls=2;
+  int nurls=0;
 	
 	std::string s(documentRequested);
 	s.erase(0,13);
@@ -58,11 +106,55 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	ReplaceStringInPlace(s,std::string("+"),std::string(" "));
 	//printf("%s\n",s.c_str());
   const char * words = s.c_str();
+	char *token = strtok((char *)words," ");
+	char *word[10];
+	int i=0;
+	while(token != NULL) {
+		word[i] = token;
+		token = strtok(NULL," ");
+		i++;
+	}
+	const char *urls[500];
+	const char *description[500];
+	URLRecordList *data[10];
+	for(int j=0;j<i;i++) {
+		data[j]=(URLRecordList *)_wordToURLList->findRecord(word[j]);
+	}
+	if(i==1) {
+		URLRecordList *e = data[0];
+		while(e!=NULL) {
+			urls[nurls]=strdup(urlArray[e->_urlRecordIndex]._url);
+			description[nurls]=strdup(urlArray[e->_urlRecordIndex]._description);
+			nurls++;
+			e=e->_next;
+		}
+	}
+	else {
+		bool intersect =false;
+		URLRecordList *e = data[0];
+		int index = e->_urlRecordIndex;
+		while(e!=NULL) {
+			for(int j=1;j<i;j++) {
+				if(!findURL(data[j],index)) {
+					intersect = false;
+					break;
+				}
+				else {
+					intersect = true;
+				}
+			}
+			e=e->_next;
+			index=e->_urlRecordIndex;
+		}
+		if(intersect) {
+			
+		}
+
+	}
 	
 	
 	
-	
-  const char * urls[] = {
+  /*const char * urls[] = {
     "http://www.cs.purdue.edu",
     "http://www.cs.purdue.edu/homes/cs251"
   };
@@ -70,7 +162,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   const char * description[] = {
     "Computer Science Department. Purdue University.",
     "CS251 Data Structures"
-  };
+  };*/
 
 	clock_gettime(CLOCK_REALTIME,&stop);
 	timeelapsed = stop.tv_nsec - start.tv_nsec;
@@ -144,6 +236,16 @@ int main(int argc, char ** argv)
   httpd.run();
 
   return 0;
+}
+bool SearchEngine::findURL(URLRecordList *list, int index) {
+	URLRecordList *e=list;
+	while(e!=NULL) {
+		if(e->_urlRecordIndex == index) {
+			return true;
+		}
+		e=e->_next;
+	}
+	return false;
 }
 
 void SearchEngine::ReplaceStringInPlace(std::string& subject, const std::string& search,
