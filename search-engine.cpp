@@ -23,7 +23,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			break;
 	}
   // Create dictionary of the indicated type
-	char *word[100];
+	char **word= new char*[100];
   // Populate dictionary and sort it if necessary
   if(fp!=NULL) {
   	while(!feof(fp))
