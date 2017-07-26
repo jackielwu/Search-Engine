@@ -241,6 +241,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 			e=e->_next;
 		}
 	}
+	nurls--;
 	/*else {
 		bool intersect =false;
 		URLRecordList *e = data[0];
