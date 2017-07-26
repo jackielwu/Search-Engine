@@ -62,7 +62,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		fs.close();
 		printf("loaded word\n");
 	}
-	
+	}
 	
   // Populate dictionary and sort it if necessary
   FILE *fp;
@@ -115,7 +115,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   	}
   	fclose(fp);
   }*/
-  }
+  
 }
 
 void
