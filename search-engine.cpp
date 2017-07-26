@@ -99,6 +99,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
   	}
   	fclose(fp);
+  	printf("end word\n");
   }
   urlArray=new URLRecord[500];
   /*fp=fopen("url.txt","r");
