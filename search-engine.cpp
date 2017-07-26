@@ -30,7 +30,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	std::fstream fs("word.txt",std::fstream::in);
 	if(fs.is_open()) {
 		while(!fs.eof()) {
-			std::string line;
+			std::string line=NULL;
 			std::getline(fs,line);
 			printf("length: %d\n",line.length());
 			char *tokens = strdup(line.c_str());
