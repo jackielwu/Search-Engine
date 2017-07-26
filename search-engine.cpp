@@ -110,7 +110,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   	{
   		//char word[100];
   		URLRecord *e = new URLRecord;
-  		//URLRecordList *num = new URLRecordList();
+
   		char parse[5000];
   		char desc[600];
   		char spac[10];
