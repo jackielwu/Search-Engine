@@ -77,9 +77,9 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		char line[5000];
   		fgets(line,4999,fp);
   		//fscanf(fp,"%s", word[i++]);
-  		//sscanf(line,"%s ",word);
-  		printf("%s",line);
-  		char c;
+  		sscanf(line,"%s ",word);
+  		printf("%s",word);
+  		char c='a';
   		do {
   			//fscanf(fp,"%d%c",&e->_index,&c);
   			int ni =sscanf(line,"%d ",&e->_index);
