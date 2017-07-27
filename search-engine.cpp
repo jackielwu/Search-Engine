@@ -143,7 +143,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	}
 	
 	finished:
-	
+	exit(1);
 	
 	
 	
