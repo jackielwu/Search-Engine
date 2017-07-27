@@ -102,18 +102,17 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			while(*buffer!='\n') {
 				index= new char[100];
 				int i=0;
-				if(*buffer!=' ') {
+				while(*buffer!=' ') {
 					*(index+i)=*buffer;
 					i++;
+					buffer++;
 				}
-				else {
-					*(index+i)='\0';
-					e->_index = atoi(index);
-					printf(" %s",index);
-					URLRecordList *n = new URLRecordList();
-					e->_next=n;
-					e=e->_next;
-				}
+				*(index+i)='\0';
+				e->_index = atoi(index);
+				printf(" %s",index);
+				URLRecordList *n = new URLRecordList();
+				e->_next=n;
+				e=e->_next;
 				buffer++;
 			}
 			_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
