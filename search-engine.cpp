@@ -105,9 +105,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				index= new char[100];
 				int i=0;
 				while(*buffer!=' ') {
-					if(*buffer=='\n') {
-						break;
-					}
+					//if(*buffer=='\n')
+						//break;
 					*(index+i)=*buffer;
 					i++;
 					buffer++;
@@ -121,7 +120,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				URLRecordList *n = new URLRecordList();
 				e->_next=n;
 				e=e->_next;
-				//buffer++;
+				buffer++;
 			}
 			printf("\n");
 			_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
