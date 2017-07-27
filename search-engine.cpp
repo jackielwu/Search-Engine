@@ -90,10 +90,12 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		if(onword) {
 			word = new char[100];
 			int i=0;
-			while(*buffer!=' ' && *buffer!='\0') {
+			while(*buffer!=' ') {
 				*(word+i)=*buffer;
 				i++;
 				buffer++;
+				if(*buffer=='\0')
+					goto finished;
 			}
 			*(word+i)='\0';
 			//printf("%s",word);
@@ -101,10 +103,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 		else {
 			char *index;
-			while(*buffer!='\n' && *buffer!='\0') {
+			while(*buffer!='\n') {
 				index= new char[100];
 				int i=0;
-				while(*buffer!=' ' && *buffer!='\n' && *buffer!='\0') {
+				while(*buffer!=' ' && *buffer!='\n') {
 					/*if(*buffer=='\n') {
 						i++;
 						break;
@@ -112,6 +114,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 					*(index+i)=*buffer;
 					i++;
 					buffer++;
+					if(*buffer=='\0')
+						goto finished;
 				}
 				/*if(*buffer==NULL){
 					break;
@@ -123,6 +127,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				e->_next=n;
 				e=e->_next;
 				buffer++;
+				if(*buffer=='\0')
+					goto finished;
 			}
 			//printf("\n");
 			_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
@@ -132,7 +138,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		buffer++;
 	}
 	
-	
+	finished:
 	
 	
 	
