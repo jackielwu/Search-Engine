@@ -98,9 +98,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			onword=false;
 		}
 		else {
-			char *index= new char[100];
-			int i=0;
+			char *index;
 			while(*buffer!='\n') {
+				index= new char[100];
+				int i=0;
 				if(*buffer!=' ') {
 					*(index+i)=*buffer;
 					i++;
