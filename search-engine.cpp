@@ -109,6 +109,9 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 					i++;
 					buffer++;
 				}
+				if(*buffer==NULL){
+					break;
+				}
 				*(index+i)='\0';
 				e->_index = atoi(index);
 				printf(" %s",index);
