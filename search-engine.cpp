@@ -85,8 +85,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		URLRecordList *num = new URLRecordList();
   	URLRecordList *e=num;
   	char *word = new char[100];
+  	int i=0;
 		if(onword) {
-			int i=0;
 			if(*buffer!=' ') {
 				*(word+i)=*buffer;
 				i++;
