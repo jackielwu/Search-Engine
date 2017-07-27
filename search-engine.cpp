@@ -121,7 +121,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				URLRecordList *n = new URLRecordList();
 				e->_next=n;
 				e=e->_next;
-				buffer++;
+				//buffer++;
 			}
 			printf("\n");
 			_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
