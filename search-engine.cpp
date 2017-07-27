@@ -73,13 +73,11 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   	do
   	//while(!feof(fp))
   	{
-  		char line[5000];
-  		check = fgets(line,4999,fp);
+  		char line[4096];
+  		check = fgets(line,sizeof(line),fp);
   		//char word[100];
   		URLRecordList *num = new URLRecordList();
   		URLRecordList *e=num;
-  		int i=0;
-  		
   		//printf("%s\n",line);
   		printf("%s\n",check);
   		char *word = strtok(line," ");
