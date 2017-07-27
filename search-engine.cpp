@@ -102,7 +102,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			while(*buffer!='\n') {
 				index= new char[100];
 				int i=0;
-				while(*buffer!=' ' && *buffer!='\n') {
+				while(*buffer!=' ' && *buffer!=EOF) {
 					*(index+i)=*buffer;
 					i++;
 					buffer++;
