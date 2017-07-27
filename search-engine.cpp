@@ -298,7 +298,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	
 	std::string s(documentRequested);
 	s.erase(0,13);
-	//printf("%s\n",s.c_str());
+	printf("%s\n",s.c_str());
 	ReplaceStringInPlace(s,std::string("+"),std::string(" "));
 	//printf("%s\n",s.c_str());
   const char * words = s.c_str();
