@@ -116,7 +116,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			}
 			else {
 				_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
-				printf("\n");
+				//printf("\n");
 				onword=true;
 			}
 		}
