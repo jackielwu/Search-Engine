@@ -120,8 +120,9 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				e=e->_next;
 				buffer++;
 			}
-			_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
 			printf("\n");
+			_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
+			
 			onword=true;
 		}
 		buffer++;
