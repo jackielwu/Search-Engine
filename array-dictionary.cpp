@@ -52,6 +52,9 @@ ArrayDictionary::addRecord( KeyType key, DataType record)
 DataType
 ArrayDictionary::findRecord( KeyType key)
 {
+	if(key==NULL) {
+		fprintf(stderr,"ArrayDict findRecord null key");
+	}
   for(int i=0;i<currentNumber;i++) {
 		if(strcmp(key,array[i]->key)==0) {
 			return array[i]->data;
