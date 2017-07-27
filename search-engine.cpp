@@ -83,6 +83,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	URLRecordList *num = new URLRecordList();
 	URLRecordList *e=num;
 	char *word;
+	printf("load words\n");
 	while(*buffer!='\0')
 	{
 		if(onword) {
