@@ -126,6 +126,8 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				URLRecordList *n = new URLRecordList();
 				e->_next=n;
 				e=e->_next;
+				if(*buffer=='\n')
+					break;
 				if(*buffer=='\0')
 					goto finished;
 				buffer++;
