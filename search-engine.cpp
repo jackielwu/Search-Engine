@@ -71,6 +71,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	if(fword!=NULL) {
 		fseek(fword,0L,SEEK_END);
 		size = ftell(fword);
+		rewind(fword);
 		buffer= new char[size+1];
 		fread(buffer,1,size,fword);
 	}
