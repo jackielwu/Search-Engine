@@ -1,5 +1,5 @@
 Name: Jackie Wu
 Login: wu891
 Working features: array-dict, bsearch-dict, hash-dict
-Nonworking features: avl-dict (seg fault test-avl), search engine (fscanf not scanning properly, getting %d%c 0 and -1.
+Nonworking features: avl-dict (seg fault test-avl), search engine (load word.txt)
 Extra features: none
