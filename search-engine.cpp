@@ -79,7 +79,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	//printf("%d\n",buffer[size]);
 	fclose(fword);
 	bool onword = true;
-	printf("load words\n");
+	//printf("load words\n");
 	//printf("%s",buffer);
 	URLRecordList *num = new URLRecordList();
 	URLRecordList *e=num;
