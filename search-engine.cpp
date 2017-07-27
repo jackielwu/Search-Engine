@@ -78,6 +78,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	fclose(fword);
 	bool onword = true;
 	printf("load words\n");
+	printf("%s",buffer);
 	while(*buffer!='\0')
 	{
 		URLRecordList *num = new URLRecordList();
