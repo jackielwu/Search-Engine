@@ -83,26 +83,29 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   	URLRecordList *e=num;
   	char *word = new char[100];
 		if(onword) {
+			int i=0;
 			if(*buffer!=' ') {
-				*word=*buffer;
-				word++;
+				*(word+i)=*buffer;
+				i++;
 			}
 			else {
-				*word='\0';
+				*(word+i)='\0';
+				printf("%s",word);
 				onword=false;
 			}
 		}
 		else {
 			char *index= new char[100];
-			char *n= index;
+			int i=0;
 			if(*buffer!='\n') {
 				if(*buffer!=' ') {
-					*index=*buffer;
-					index++;
+					*(index+i)=*buffer;
+					i++;
 				}
 				else {
-					*index='\0';
-					e->_index = atoi(n);
+					*(index+i)='\0';
+					e->_index = atoi(index);
+					printf(" %s",index);
 					URLRecordList *n = new URLRecordList();
 					e->_next=n;
 					e=e->_next;
@@ -110,6 +113,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 			}
 			else {
 				_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
+				printf("\n");
 				onword=true;
 			}
 		}
