@@ -8,7 +8,7 @@
 SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   MiniHTTPD(port)
 {
-	debug =true;
+	//debug =true;
 
 	switch(dictionaryType) {
 		case ArrayDictionaryType:
@@ -26,7 +26,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	}
   // Create dictionary of the indicated type
 	
-	if(!debug){
+	/*if(!debug){
 	printf("load word\n");
 	std::ifstream fs("word.txt",std::ifstream::in);
 	if(fs.is_open()) {
@@ -62,22 +62,26 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		fs.close();
 		printf("loaded word\n");
 	}
-	}
+	}*/
 	
   // Populate dictionary and sort it if necessary
   FILE *fp;
 	fp = fopen("word.txt","r");
 	//printf("load word\n");
   if(fp!=NULL) {
-  	while(!feof(fp))
+  	char *check;
+  	do
+  	//while(!feof(fp))
   	{
+  		char line[5000];
+  		check = fgets(line,4999,fp);
   		//char word[100];
   		URLRecordList *num = new URLRecordList();
   		URLRecordList *e=num;
   		int i=0;
-  		char line[5000];
-  		fgets(line,4999,fp);
-  		printf("%s\n",line);
+  		
+  		//printf("%s\n",line);
+  		printf("%s\n",check);
   		char *word = strtok(line," ");
   		//printf("%s ",word);
   		char *index = strtok(NULL," ");
@@ -97,7 +101,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		}
   		//printf("\n");
   		_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
-  	}
+  	}while(check!=NULL);
   	//fclose(fp);
   	printf("end word\n");
   }
