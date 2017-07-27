@@ -98,7 +98,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 					goto finished;
 			}
 			*(word+i)='\0';
-			//printf("%s",word);
+			printf("%s",word);
 			onword=false;
 		}
 		else {
@@ -122,7 +122,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				}*/
 				*(index+i)='\0';
 				e->_index = atoi(index);
-				//printf(" %s",index);
+				printf(" %s",index);
 				URLRecordList *n = new URLRecordList();
 				e->_next=n;
 				e=e->_next;
@@ -134,7 +134,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				if(*buffer=='\0')
 					goto finished;
 			}
-			//printf("\n");
+			printf("\n");
 			_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
 			
 			onword=true;
