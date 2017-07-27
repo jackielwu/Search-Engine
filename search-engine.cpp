@@ -101,17 +101,17 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 		else {
 			char *index;
-			while(*buffer!=NULL) {
+			while(*buffer!='\n') {
 				index= new char[100];
 				int i=0;
-				while(*buffer!=' ') {
+				while(*buffer!=' '|| *buffer!='\n') {
 					*(index+i)=*buffer;
 					i++;
 					buffer++;
 				}
-				if(*buffer==NULL){
+				/*if(*buffer==NULL){
 					break;
-				}
+				}*/
 				*(index+i)='\0';
 				e->_index = atoi(index);
 				printf(" %s",index);
