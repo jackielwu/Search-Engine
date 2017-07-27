@@ -83,7 +83,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		char *index = strtok(NULL," ");
   		//fscanf(fp,"%s", word[i++]);
   		//sscanf(line,"%s ",word);
-  		printf(" %s",index);
+  		//printf(" %s",index);
   		while(index!=NULL){
   			//fscanf(fp,"%d%c",&e->_index,&c);
   			//int ni =sscanf(line,"%d ",e->_index);
