@@ -90,7 +90,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		if(onword) {
 			word = new char[100];
 			int i=0;
-			while(*buffer!=' ') {
+			while(*buffer!=' ' && *buffer!='\0') {
 				*(word+i)=*buffer;
 				i++;
 				buffer++;
