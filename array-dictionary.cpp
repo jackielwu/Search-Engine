@@ -20,6 +20,16 @@ ArrayDictionary::ArrayDictionary()
 bool
 ArrayDictionary::addRecord( KeyType key, DataType record)
 {
+	if(currentNumber==maxNumber) {
+		int omax = maxNumber;
+		maxNumber = 2 * maxNumber;
+		ArrayDictionaryNode ** narray = (ArrayDictionaryNode **) malloc(maxNumber * sizeof(ArrayDictionaryNode *));
+		for(int i=0;i<omax;i++) {
+			narray[i]=array[i];
+		}
+		free(array);
+		array = narray;
+	}
 	for(int i=0;i<currentNumber;i++) {
 		//printf("array-dict: %s\n", array[i]->key);
 		if(strcmp(key,array[i]->key)==0) {
@@ -30,7 +40,8 @@ ArrayDictionary::addRecord( KeyType key, DataType record)
 	ArrayDictionaryNode *e = new ArrayDictionaryNode();
 	e->key = strdup(key);
 	e->data = record;
-	array[currentNumber++] = e;
+	array[currentNumber] = e;
+	currentNumber++;
 	return true;
 }
 
