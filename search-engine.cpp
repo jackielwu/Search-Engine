@@ -64,6 +64,65 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	}
 	}*/
 	
+	FILE *fword;
+	fword = fopen("word.txt","r");
+	char *buffer;
+	long size;
+	if(fword!=NULL) {
+		fseek(fword,0L,SEEK_END);
+		size = ftell(fword);
+		buffer= new char[size+1];
+		fread(buffer,1,size,fword);
+	}
+	buffer[size]='\0';
+	fclose(fword);
+	bool onword = true;
+	while(*buffer!='\0')
+	{
+		URLRecordList *num = new URLRecordList();
+  	URLRecordList *e=num;
+  	char *word = new char[100];
+		if(onword) {
+			if(*buffer!=' ') {
+				*word=*buffer;
+				word++;
+			}
+			else {
+				*word='\0';
+				onword=false;
+			}
+		}
+		else {
+			char *index= new char[100];
+			char *n= index;
+			if(*buffer!='\n') {
+				if(*buffer!=' ') {
+					*index=*buffer;
+					index++;
+				}
+				else {
+					*index='\0';
+					e->_index = atoi(n);
+					URLRecordList *n = new URLRecordList();
+					e->_next=n;
+					e=e->_next;
+				}
+			}
+			else {
+				_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
+				onword=true;
+			}
+		}
+		buffer++;
+	}
+	
+	
+	
+	
+	
+	
+	
+	/*
   // Populate dictionary and sort it if necessary
   FILE *fp;
 	fp = fopen("word.txt","r");
@@ -104,7 +163,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   	}//while(check!=NULL);
   	//fclose(fp);
   	printf("end word\n");
-  }
+  }*/
   int max =500;
   urlArray=new URLRecord*[max];
   FILE *urlf;
