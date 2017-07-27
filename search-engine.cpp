@@ -302,7 +302,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	ReplaceStringInPlace(s,std::string("+"),std::string(" "));
 	//printf("%s\n",s.c_str());
   const char * words = s.c_str();
-  
+  printf("%s\n",words);
 	char *token = strtok((char *)words," ");
 	char *word[10];
 	int i=0;
