@@ -20,6 +20,9 @@ ArrayDictionary::ArrayDictionary()
 bool
 ArrayDictionary::addRecord( KeyType key, DataType record)
 {
+	if(key==NULL) {
+		fprintf(stderr,"Null");
+	}
 	if(currentNumber==maxNumber) {
 		int omax = maxNumber;
 		maxNumber = 2 * maxNumber;
