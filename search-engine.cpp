@@ -297,16 +297,17 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
   //const int nurls=2;
 	printf("%s\n",documentRequested);
 	std::string s(documentRequested);
+
 	s.erase(0,13);
 	//printf("%s\n",s.c_str());
 	ReplaceStringInPlace(s,std::string("+"),std::string(" "));
 	//printf("%s\n",s.c_str());
-  const char * words = s.c_str();
-  printf("%s\n",words);
-  int i=1;
+	const char * words = s.c_str();
+	printf("%s\n",words);
+	int i=1;
 	/*char *token = strtok((char *)words," ");
 	char *word[10];
-	
+
 	while(token != NULL) {
 		word[i] = token;
 		token = strtok(NULL," ");
@@ -333,6 +334,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		}
 	}
 	nurls--;
+	
 	/*else {
 		bool intersect =false;
 		URLRecordList *e = data[0];
