@@ -303,15 +303,17 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	//printf("%s\n",s.c_str());
   const char * words = s.c_str();
   printf("%s\n",words);
-	char *token = strtok((char *)words," ");
+  int i=1;
+	/*char *token = strtok((char *)words," ");
 	char *word[10];
-	int i=0;
+	
 	while(token != NULL) {
 		word[i] = token;
 		token = strtok(NULL," ");
 		i++;
-	}
-	printf("%d\n",i);
+	}*/
+	char *word = (char *)words;
+	//printf("%d\n",i);
 
 	int nurls=0;
 	const char *urls[500];
@@ -320,7 +322,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 	/*for(int j=0;j<i;i++) {
 		data[j]=(URLRecordList *)_wordToURLList->findRecord(word[j]);
 	}*/
-	data[0]=(URLRecordList *)_wordToURLList->findRecord(word[0]);
+	data[0]=(URLRecordList *)_wordToURLList->findRecord(word);
 	if(i==1) {
 		URLRecordList *e = data[0];
 		while(e!=NULL) {
