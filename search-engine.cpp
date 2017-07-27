@@ -99,10 +99,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		}
 		else {
 			char *index;
-			while(*buffer!='\n'&& *buffer!='\0') {
+			while(*buffer!='\n') {
 				index= new char[100];
 				int i=0;
-				while(*buffer!=' ') {
+				while(*buffer!=' ' && *buffer!=0x0a) {
 					*(index+i)=*buffer;
 					i++;
 					buffer++;
