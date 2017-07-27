@@ -69,17 +69,19 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 	fp = fopen("word.txt","r");
 	//printf("load word\n");
   if(fp!=NULL) {
-  	char *check;
-  	do
+  	//char *check;
+  	char line[4096];
+  	//do
   	//while(!feof(fp))
+  	while(fgets(line,sizeof(line),fp))
   	{
-  		char line[4096];
-  		check = fgets(line,sizeof(line),fp);
+  		//char line[4096];
+  		//check = fgets(line,sizeof(line),fp);
   		//char word[100];
   		URLRecordList *num = new URLRecordList();
   		URLRecordList *e=num;
-  		//printf("%s\n",line);
-  		printf("%s\n",check);
+  		printf("%s\n",line);
+  		//printf("%s\n",check);
   		char *word = strtok(line," ");
   		//printf("%s ",word);
   		char *index = strtok(NULL," ");
@@ -99,7 +101,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
   		}
   		//printf("\n");
   		_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
-  	}while(check!=NULL);
+  	}//while(check!=NULL);
   	//fclose(fp);
   	printf("end word\n");
   }
