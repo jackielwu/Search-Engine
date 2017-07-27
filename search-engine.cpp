@@ -76,7 +76,7 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 		fread(buffer,1,size,fword);
 	}
 	buffer[size]='\0';
-	printf("%c\n",buffer[size]);
+	//printf("%d\n",buffer[size]);
 	fclose(fword);
 	bool onword = true;
 	printf("load words\n");
