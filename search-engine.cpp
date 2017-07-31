@@ -324,6 +324,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		data[j]=(URLRecordList *)_wordToURLList->findRecord(word[j]);
 	}*/
 	data[0]=(URLRecordList *)_wordToURLList->findRecord(word);
+	/*
 	if(i==1) {
 		URLRecordList *e = data[0];
 		while(e!=NULL) {
@@ -334,7 +335,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		}
 	}
 	nurls--;
-	
+	*/
 	/*else {
 		bool intersect =false;
 		URLRecordList *e = data[0];
