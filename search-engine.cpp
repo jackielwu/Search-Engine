@@ -123,11 +123,13 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				*(index+i)='\0';
 				e->_index = atoi(index);
 				//printf(" %s",index);
-				URLRecordList *n = new URLRecordList();
-				e->_next=n;
-				e=e->_next;
+				if(*buffer!='\n') {
+					URLRecordList *n = new URLRecordList();
+					e->_next=n;
+					e=e->_next;
+				}
 				if(*buffer=='\n') {
-					e=NULL;
+					e->_next=NULL;
 					break;
 				}
 				if(*buffer=='\0')
