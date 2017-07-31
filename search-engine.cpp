@@ -126,8 +126,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 				URLRecordList *n = new URLRecordList();
 				e->_next=n;
 				e=e->_next;
-				if(*buffer=='\n')
+				if(*buffer=='\n') {
+					e=NULL;
 					break;
+				}
 				if(*buffer=='\0')
 					goto finished;
 				buffer++;
@@ -324,10 +326,13 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		data[j]=(URLRecordList *)_wordToURLList->findRecord(word[j]);
 	}*/
 	data[0]=(URLRecordList *)_wordToURLList->findRecord(word);
-	/*
+	
 	if(i==1) {
 		URLRecordList *e = data[0];
+		
+		int count = 0;
 		while(e!=NULL) {
+			printf("count: %d\n", ++count);
 			urls[nurls]=strdup(urlArray[e->_index]->_url);
 			description[nurls]=strdup(urlArray[e->_index]->_description);
 			nurls++;
@@ -335,7 +340,7 @@ SearchEngine::dispatch( FILE * fout, const char * documentRequested)
 		}
 	}
 	nurls--;
-	*/
+	
 	/*else {
 		bool intersect =false;
 		URLRecordList *e = data[0];
