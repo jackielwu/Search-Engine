@@ -132,8 +132,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 					e->_next=NULL;
 					break;
 				}
-				if(*buffer=='\0')
+				if(*buffer=='\0') {
+					e->_next=NULL;
 					goto finished;
+				}
 				buffer++;
 				if(*buffer=='\0')
 					goto finished;
