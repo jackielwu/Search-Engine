@@ -54,6 +54,7 @@ ArrayDictionary::findRecord( KeyType key)
 {
 	if(key==NULL) {
 		fprintf(stderr,"ArrayDict findRecord null key");
+		return NULL;
 	}
   for(int i=0;i<currentNumber;i++) {
 		if(strcmp(key,array[i]->key)==0) {
