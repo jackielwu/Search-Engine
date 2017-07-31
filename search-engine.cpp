@@ -137,8 +137,10 @@ SearchEngine::SearchEngine( int port, DictionaryType dictionaryType):
 					goto finished;
 				}
 				buffer++;
-				if(*buffer=='\0')
+				if(*buffer=='\0') {
+					e->_next=NULL;
 					goto finished;
+				}
 			}
 			//printf("\n");
 			_wordToURLList->addRecord((const char*)word,(URLRecordList *)num);
